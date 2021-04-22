@@ -6,13 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:hint="select_city"
+        app:startIconDrawable="@drawable/ic_baseline_location_on_24"
+        app:startIconContentDescription="content description"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        >
+
+        <AutoCompleteTextView
+            android:id="@+id/choose_city_auto_complete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <TextView
-        android:id="@+id/main_taxt"
+        android:id="@+id/expression_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/no_info"
         android:textSize="20sp"
-        android:layout_centerInParent="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"/>
+    <TextView
+        android:id="@+id/main_taxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/expression_text"
+       />
 
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
@@ -22,7 +50,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         ads:adSize="MEDIUM_RECTANGLE"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        ads:adUnitId="@string/banner_unit_id">
     </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>

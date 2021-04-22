@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">Time to Meghreb</string>
     <string name="no_info">العلم لله لم نتوصل بمعلومات كافية</string>
+    <string name="time_to_meghreb">باقي على أذان المغرب</string>
+    <string name="time_to_fajr">باقي على أذان الفجر</string>
+    <string name="not_in_ramadan">تطبيق يعمل في شهر رمضان فقط</string>
+    <string name="meghreb_time">حان موعد أذان المغرب</string>
+    <string name="fajr_time">حان موعد أذان الفجر</string>
+
+
+
+
+
+
+
+
+
+    <string name="banner_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="Interstitial_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+
 </resources>
