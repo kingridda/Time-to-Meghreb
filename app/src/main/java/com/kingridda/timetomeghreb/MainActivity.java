@@ -16,16 +16,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdError;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.FullScreenContentCallback;
-import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.google.android.gms.ads.interstitial.InterstitialAd;
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences prefs;
 
 
-    private AdView adViewBanner;
-    private InterstitialAd mInterstitialAd;
 
 
     private String currentDate;
@@ -90,53 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //Ads code
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
 
-        //banner
-        adViewBanner = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adViewBanner.loadAd(adRequest);
-
-        //Interstitial Ads
-        AdRequest adRequestInterstitial = new AdRequest.Builder().build();
-        InterstitialAd.load(this, getString(R.string.Interstitial_unit_id), adRequestInterstitial, new InterstitialAdLoadCallback() {
-            @Override
-            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                mInterstitialAd = interstitialAd;
-
-                interstitialAd.setFullScreenContentCallback(
-                        new FullScreenContentCallback() {
-                            @Override
-                            public void onAdDismissedFullScreenContent() {
-                                // Called when fullscreen content is dismissed.
-                            }
-
-                            @Override
-                            public void onAdFailedToShowFullScreenContent(AdError adError) {
-                                // Called when fullscreen content failed to show.
-
-                            }
-
-                            @Override
-                            public void onAdShowedFullScreenContent() {
-                                // Called when fullscreen content is shown.
-                                MainActivity.this.mInterstitialAd = null;
-                            }
-                        });
-            }
-
-            @Override
-            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                //Log.i("interstatialAd", loadAdError.getMessage());
-                mInterstitialAd = null;
-            }
-        });
 
 
         //registering the broadCast Receiver
@@ -144,14 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void showInterstitial() {
-        // Show the ad if it's ready. Otherwise toast and restart the game.
-        if (mInterstitialAd != null) {
-            mInterstitialAd.show(this);
-        } else {
-           // Log.d("TAG", "The interstitial ad wasn't ready yet.");
-        }
-    }
+
 
 
     private String compareTimes(String curr, String meghreb, String fajr){
@@ -267,7 +203,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             mainFuntionality();
-            showInterstitial();
         }
     }
     private boolean isRamadan(){
